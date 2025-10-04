@@ -1,0 +1,50 @@
+﻿<Window x:Class="Framework1.usuarios.materias_edit"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Framework1.usuarios"
+        mc:Ignorable="d"
+        Title="materias_edit" Height="400" Width="700" Background="#FF272525" Closing="Window_Closing">
+
+    <Border CornerRadius="0" BorderThickness="10" Height="380">
+        <Border.BorderBrush>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="LightBlue" Offset="0.0"/>
+                <GradientStop Color="LightGreen" Offset="0.8"/>
+            </LinearGradientBrush>
+        </Border.BorderBrush>
+
+        <Grid x:Name="grid_control">
+            <Grid Margin="36,30,468,29" Style="{StaticResource contenedor1}" Background="#FF333333">
+
+                <StackPanel Style="{StaticResource subcontenedor1}" Margin="40,27,40,43" Background="#FF333333">
+                    <Label Content="Ingreso Materias" Foreground="LightGreen" FontSize="20"
+                           FontStyle="Italic" FontWeight="DemiBold" HorizontalAlignment="Center"/>
+
+                    <Label Content="ID" Foreground="LightGreen"/>
+                    <TextBox x:Name="txt_id" Width="184" Style="{StaticResource txt_nombre}" Height="25"/>
+
+                    <Label Content="Nombre" Foreground="LightGreen"/>
+                    <TextBox x:Name="txt_nombre" Width="184" Style="{StaticResource txt_nombre}" Height="25"/>
+
+                    <Label Content="Semestre" Foreground="LightGreen"/>
+                    <TextBox x:Name="txt_semestre" Width="184" Style="{StaticResource txt_nombre}" Height="25"/>
+                </StackPanel>
+
+                <StackPanel Margin="308,0,-430,0" Background="#FF90CF8F" Height="300" VerticalAlignment="Center">
+                    <DataGrid Name="grid_materias" Margin="20" Width="350" Height="200" 
+                              AutoGenerateColumns="False" IsReadOnly="True" 
+                              SelectionMode="Single" SelectionUnit="FullRow" Cursor="Hand">
+
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="Auto"/>
+                            <DataGridTextColumn Header="Nombre" Binding="{Binding Nombre}" Width="Auto"/>
+                            <DataGridTextColumn Header="Semestre" Binding="{Binding Semestre}" Width="Auto"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </Border>
+</Window>

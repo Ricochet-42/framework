@@ -1,0 +1,62 @@
+﻿<Window x:Class="Framework1.usuarios.alumnos_edit"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Framework1.usuarios"
+        mc:Ignorable="d"
+        Title="alumnos_edit" Height="500" Width="850" Background="#FF272525" Closing="Window_Closing">
+
+    <Border CornerRadius="0" BorderThickness="10" Height="480">
+        <Border.BorderBrush>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="LightBlue" Offset="0.0"/>
+                <GradientStop Color="LightGreen" Offset="0.8"/>
+            </LinearGradientBrush>
+        </Border.BorderBrush>
+
+        <Grid x:Name="grid_control">
+            <Grid Margin="36,30,468,29" Style="{StaticResource contenedor1}" Background="#FF333333">
+
+                <StackPanel Style="{StaticResource subcontenedor1}" Margin="40,27,40,43" Background="#FF333333">
+                    <Label Content="Ingreso Alumnos" Foreground="LightGreen" FontSize="20"
+                           FontStyle="Italic" FontWeight="DemiBold" HorizontalAlignment="Center"/>
+
+                    <Label Content="Expediente" Foreground="LightGreen"/>
+                    <TextBox x:Name="txt_expediente" Width="184" Style="{StaticResource txt_nombre}" Height="25"/>
+
+                    <Label Content="Nombre" Foreground="LightGreen"/>
+                    <TextBox x:Name="txt_nombre" Width="184" Style="{StaticResource txt_nombre}" Height="25"/>
+
+                    <Label Content="Semestre" Foreground="LightGreen"/>
+                    <TextBox x:Name="txt_semestre" Width="184" Style="{StaticResource txt_nombre}" Height="25"/>
+
+                    <Label Content="Correo" Foreground="LightGreen"/>
+                    <TextBox x:Name="txt_correo" Width="185" Style="{StaticResource txt_nombre}" Height="25"/>
+
+                    <Label Content="Edad" Foreground="LightGreen"/>
+                    <TextBox x:Name="txt_edad" Width="185" Style="{StaticResource txt_nombre}" Height="25"/>
+
+                    <Label Content="Género" Foreground="LightGreen"/>
+                    <TextBox x:Name="txt_genero" Width="185" Style="{StaticResource txt_nombre}" Height="25"/>
+                </StackPanel>
+
+                <StackPanel Margin="308,0,-430,0" Background="#FF90CF8F" Height="400" VerticalAlignment="Center">
+                    <DataGrid Name="grid_alumnos" Margin="20" Width="400" Height="250" 
+                              AutoGenerateColumns="False" IsReadOnly="True" 
+                              SelectionMode="Single" SelectionUnit="FullRow" Cursor="Hand">
+
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Expediente" Binding="{Binding Expediente}" Width="Auto"/>
+                            <DataGridTextColumn Header="Nombre" Binding="{Binding Nombre}" Width="Auto"/>
+                            <DataGridTextColumn Header="Semestre" Binding="{Binding Semestre}" Width="Auto"/>
+                            <DataGridTextColumn Header="Correo" Binding="{Binding Correo}" Width="Auto"/>
+                            <DataGridTextColumn Header="Edad" Binding="{Binding Edad}" Width="Auto"/>
+                            <DataGridTextColumn Header="Género" Binding="{Binding Genero}" Width="Auto"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </Border>
+</Window>

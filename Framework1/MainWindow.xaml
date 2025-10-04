@@ -1,0 +1,143 @@
+﻿<Window x:Name="window" x:Class="Framework1.MainWindow"
+        
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Framework1"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800" Background="#FF272525">
+
+    <Border CornerRadius="0"
+          
+        BorderThickness="10" Height="433">
+        <Border.BorderBrush>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="LightBlue" Offset="0.0"/>
+                <GradientStop Color="LightGreen" Offset="0.8"/>
+
+            </LinearGradientBrush>
+        </Border.BorderBrush>
+
+        <Grid Margin="250,26,250,33" Style="{StaticResource contenedor1}">
+
+
+
+            <StackPanel
+                    Style="{StaticResource subcontenedor1}" Margin="40,27,40,43">
+
+                <Label x:Name="panel"
+           Width="200">
+
+                    <Label x:Name="Label_Titulo"
+               Content="Ingreso Usuario"
+               Foreground="CadetBlue"
+               FontSize="20"
+               FontStyle="Italic"
+               FontWeight="DemiBold"
+               HorizontalAlignment="Right"
+               MouseEnter="Label_Titulo_MouseEnter"
+               MouseLeave="Label_Titulo_MouseLeave"/>
+                </Label>
+                <Label x:Name="Label_Nombre"
+           Content="Usuario"
+           Foreground="LightGreen"
+           FontSize="15"
+           FontStyle="Italic"
+           FontWeight="DemiBold"
+           MouseEnter="Label_Titulo_MouseEnter"
+           MouseLeave="Label_Titulo_MouseLeave"/>
+                
+                
+                <ComboBox x:Name="cmb_usuarios"
+          Width="200"
+          Margin="0,5,0,5"
+          HorizontalAlignment="Center"
+          VerticalAlignment="Center"
+          Foreground="DarkBlue"
+          SelectionChanged="cmb_usuarios_SelectionChanged"/>
+
+                <Label x:Name="Label_contra"
+           Content="Contrasena"
+           Style="{StaticResource estilo_etiquetas_cortas}"/>
+                <!--<TextBox x:Name="txt_contra" />-->
+
+
+                <!--<PasswordBox x:Name="txt_contra2"
+                             Width="200"
+                             HorizontalAlignment="center"
+                             HorizontalContentAlignment="Center"
+                             Foreground="DarkBlue"
+                             PasswordChar="*">
+                    
+                </PasswordBox>-->
+
+                <PasswordBox x:Name="txt_contra2"
+                 Width="200"
+                 HorizontalAlignment="Center"
+                 HorizontalContentAlignment="Center"
+                 Foreground="DarkBlue"
+                 PasswordChar="*"
+                 Visibility="Visible"/>
+
+                <!-- Caja de texto visible (se alternaA) -->
+                <TextBox x:Name="txt_contraVisible"
+             Width="200"
+             HorizontalAlignment="Center"
+             HorizontalContentAlignment="Center"
+             Foreground="DarkBlue"
+             Visibility="Collapsed"/>
+
+                <!-- Checkbox para mostrar/ocultar -->
+                <CheckBox Content="Mostrar/Ocultar clave"
+              HorizontalAlignment="Center"
+              Margin="0,5,0,0"
+              Checked="CheckBox_Checked"
+              Unchecked="CheckBox_Unchecked"/>
+                
+                <Button x:Name="btn_iniciar"
+            Content="iniciar"
+            Foreground="Black"
+            Margin="0,40,0,0"
+            Width="99" Click="btn_iniciar_Click">
+                </Button>
+
+            </StackPanel>
+
+
+            <StackPanel Margin="403,209,-251,-35" RenderTransformOrigin="0.823,0.303">
+                <Image Source="/img/32dd.png"
+               Width="106"
+               Height="204" RenderTransformOrigin="0.5,0.5">
+                    <Image.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="-0.479"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Image.RenderTransform>
+                </Image>
+            </StackPanel>
+            <StackPanel Margin="-243,-21,343,152" RenderTransformOrigin="0.823,0.303">
+                <Image Source="/img/programador.png"
+   Width="143"
+   Height="179" RenderTransformOrigin="0.5,0.5">
+                    <Image.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="-0.479"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Image.RenderTransform>
+                </Image>
+            </StackPanel>
+        </Grid>
+
+
+    </Border>
+
+
+
+</Window>

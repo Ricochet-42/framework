@@ -1,0 +1,172 @@
+﻿<Window x:Class="Framework1.usuarios.usuarios_edit"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Framework1.usuarios"
+        mc:Ignorable="d"
+        Title="usuarios_edit" Height="450" Width="800" Background="#FF272525" Closing="Window_Closing">
+    <Border CornerRadius="0"
+          
+        BorderThickness="10" Height="433">
+        <Border.BorderBrush>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="LightBlue" Offset="0.0"/>
+                <GradientStop Color="LightGreen" Offset="0.8"/>
+
+            </LinearGradientBrush>
+        </Border.BorderBrush>
+        <Grid x:Name="grid_control">
+            <Grid.ContextMenu>
+                
+                    <ContextMenu Cursor="Hand">
+                        <MenuItem Header="Agregar" Click="agregar_click">
+                        <MenuItem.Icon>
+                            <Image Source="/imagenes/agregar.png" Width="16" Height="16"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <Separator/>
+                    <MenuItem Header="Eliminar" Click="agregar_click">
+                        <MenuItem.Icon>
+                            <Image Source="/imagenes/agregar.png" Width="16" Height="16"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+
+                    <Separator/>
+                    <MenuItem Header="Actualizar" Click="agregar_click">
+                        <MenuItem.Icon>
+                            <Image Source="/imagenes/agregar.png" Width="16" Height="16"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                </ContextMenu>
+                 
+            </Grid.ContextMenu>
+        
+        <Grid Margin="36,30,468,29" Style="{StaticResource contenedor1}" Background="#FF333333">
+
+
+
+            <StackPanel
+                    Style="{StaticResource subcontenedor1}" Margin="40,27,40,43" Background="#FF333333">
+                <Label x:Name="panel"
+           Width="200">
+
+                    <Label x:Name="Label_Titulo"
+               Content="Ingreso Usuarios"
+               Foreground="LightGreen"
+               FontSize="20"
+               Padding="25 0 0 0"
+               FontStyle="Italic"
+               FontWeight="DemiBold"
+               HorizontalAlignment="Center" Width="210"
+               />
+                </Label>
+                <Label x:Name="label_nombre"
+           Content="Usuario"
+           Foreground="LightGreen"
+           FontSize="15"
+           FontStyle="Italic"
+           FontWeight="DemiBold"
+           HorizontalAlignment="Center"/>
+                <TextBox x:Name="txt_nombre"
+         Width="184"
+         Style="{StaticResource txt_nombre}" Height="25" />
+
+                
+                
+                <Label x:Name="label_clave"
+           Content="Clave"
+           Foreground="LightGreen"                      
+           HorizontalAlignment="Center"
+           FontSize="15"
+           FontStyle="Italic"
+           FontWeight="DemiBold"/>
+                
+                <TextBox x:Name="txt_clave" Width="185" Style="{StaticResource txt_nombre}" Height="25" />
+                    
+
+                <Label x:Name="label_correo"
+           Content="Correo"
+           Foreground="LightGreen"                    
+           HorizontalAlignment="Center"
+           FontSize="15"
+           FontStyle="Italic"
+           FontWeight="DemiBold"/>
+                <TextBox x:Name="txt_correo" 
+                         Width="185" Style="{StaticResource txt_nombre}" Height="25" />
+
+
+                <Label x:Name="label_tipo"
+           Content="Tipo"
+           Foreground="LightGreen"
+           HorizontalAlignment="Center"
+           FontSize="15"
+           FontStyle="Italic"
+           FontWeight="DemiBold"/>
+                <!--<TextBox x:Name="txt_tipo" Width="185" Style="{StaticResource txt_nombre}" Height="25"/>-->
+
+                    <ComboBox x:Name="cmb_usuarios_tipo"
+                    Width="200"
+                    Margin="0,5,0,5"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Foreground="DarkBlue"
+                    SelectionChanged="cmb_usuarios_tipo_SelectionChanged"/>
+
+                    <!--<Button x:Name="btn_iniciar"
+            Content="iniciar"
+            Foreground="Black"
+            Margin="0,20,0,0"
+            Width="99" Click="btn_iniciar_Click">
+                </Button>-->
+
+            </StackPanel>
+
+
+            <StackPanel Margin="308,0,-430,0" RenderTransformOrigin="0.823,0.303" Background="#FF90CF8F" Height="354" VerticalAlignment="Center">
+
+                <DataGrid HorizontalAlignment="Left"
+                          Margin="20"
+                          Name="grid_usuarios"
+                          Width="358"
+                          Height="200"
+                          BorderBrush="Black"
+                          CanUserAddRows="False"
+                          CanUserReorderColumns="True"
+                          CanUserSortColumns="True"
+                          CanUserResizeColumns="True"
+                          CanUserResizeRows="True"
+                          IsReadOnly="True"
+                          SelectionUnit="FullRow"
+                          SelectionMode="Single"
+                          AutoGenerateColumns="False"
+                          Cursor="Hand" SelectionChanged="grid_usuarios_SelectionChanged">
+
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="ID"
+                                        Binding="{Binding Id}"
+                                        Width="Auto"/>
+                        <DataGridTextColumn Header="Nombre"
+                                        Binding="{Binding Nombre}"
+                                        Width="Auto"/>
+                        <DataGridTextColumn Header="Clave"
+                                        Binding="{Binding Clave}"
+                                        Width="Auto"/>
+                        <DataGridTextColumn Header="Correo"
+                                        Binding="{Binding Correo}"
+                                        Width="Auto"/>
+                        <DataGridTextColumn Header="Tipo"
+                                        Binding="{Binding Tipo}"
+                                        Width="Auto"/>
+                    </DataGrid.Columns>
+
+
+                </DataGrid>
+            </StackPanel>
+        </Grid>
+        </Grid>
+
+    </Border>
+
+
+</Window>
