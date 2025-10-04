@@ -70,7 +70,7 @@
            HorizontalAlignment="Center"/>
                 <TextBox x:Name="txt_nombre"
          Width="184"
-         Style="{StaticResource txt_nombre}" Height="25" />
+         Style="{StaticResource txt_nombre}" Height="30" />
 
                 
                 
@@ -82,7 +82,7 @@
            FontStyle="Italic"
            FontWeight="DemiBold"/>
                 
-                <TextBox x:Name="txt_clave" Width="185" Style="{StaticResource txt_nombre}" Height="25" />
+                <TextBox x:Name="txt_clave" Width="185" Style="{StaticResource txt_nombre}" Height="30" />
                     
 
                 <Label x:Name="label_correo"
@@ -93,7 +93,7 @@
            FontStyle="Italic"
            FontWeight="DemiBold"/>
                 <TextBox x:Name="txt_correo" 
-                         Width="185" Style="{StaticResource txt_nombre}" Height="25" />
+                         Width="185" Style="{StaticResource txt_nombre}" Height="30" />
 
 
                 <Label x:Name="label_tipo"
@@ -106,12 +106,10 @@
                 <!--<TextBox x:Name="txt_tipo" Width="185" Style="{StaticResource txt_nombre}" Height="25"/>-->
 
                     <ComboBox x:Name="cmb_usuarios_tipo"
-                    Width="200"
-                    Margin="0,5,0,5"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    Foreground="DarkBlue"
-                    SelectionChanged="cmb_usuarios_tipo_SelectionChanged"/>
+          Style="{StaticResource combo_nombre}" Height="30"
+          Width="200"
+          Margin="0,5,0,5"
+          SelectionChanged="cmb_usuarios_tipo_SelectionChanged"/>
 
                     <!--<Button x:Name="btn_iniciar"
             Content="iniciar"

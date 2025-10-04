@@ -34,45 +34,164 @@
 
 
 
+    <!-- TEXTBOX: fondo #333, texto blanco, líneas izq/abajo -->
     <Style x:Key="txt_nombre" TargetType="TextBox">
         <Setter Property="Background" Value="#FF333333"/>
         <Setter Property="Foreground" Value="White"/>
         <Setter Property="CaretBrush" Value="White"/>
         <Setter Property="BorderThickness" Value="0"/>
-        <Setter Property="Padding" Value="8"/>
+        <Setter Property="Padding" Value="8,4"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="TextBox">
-                    <Border x:Name="border"
-                        Background="{TemplateBinding Background}"
-                        SnapsToDevicePixels="True">
-                        <Grid>
-                            <!-- NECESARIO para que el TextBox funcione -->
-                            <ScrollViewer x:Name="PART_ContentHost"
-                                      Margin="0" Focusable="False"/>
-
-                            <!-- Bordes decorativos -->
-                            <Border IsHitTestVisible="False"
-                                BorderBrush ="#FF90CF8F"
-                                BorderThickness="0,0,0,2"
-                                VerticalAlignment="Bottom"/>
-                            <Border IsHitTestVisible="False"
-                                BorderBrush="#FF90CF8F"
-                                BorderThickness="2,0,0,0"
-                                HorizontalAlignment="Left"/>
-                        </Grid>
-                    </Border>
+                    <Grid SnapsToDevicePixels="True">
+                        <Border x:Name="bg" Background="{TemplateBinding Background}"/>
+                        <!-- NECESARIO para escribir/ver texto -->
+                        <ScrollViewer x:Name="PART_ContentHost"
+                                  Foreground="{TemplateBinding Foreground}"
+                                  Background="Transparent"
+                                  Margin="{TemplateBinding Padding}"/>
+                        <!-- Líneas decorativas -->
+                        <Border IsHitTestVisible="False"
+                            BorderBrush ="#FF90CF8F" BorderThickness="0,0,0,2"
+                            VerticalAlignment="Bottom"/>
+                        <Border IsHitTestVisible="False"
+                            BorderBrush="#FF90CF8F" BorderThickness="2,0,0,0"
+                            HorizontalAlignment="Left"/>
+                    </Grid>
                     <ControlTemplate.Triggers>
-                        <!-- Hover: cambia el fondo; el texto sigue blanco -->
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="border" Property="Background" Value="#FF90CF8F"/>
+                            <Setter TargetName="bg" Property="Background" Value="#FF90CF8F"/>
                             <Setter Property="Foreground" Value="White"/>
                             <Setter Property="CaretBrush" Value="White"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="bg" Property="Opacity" Value="0.5"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
+
+    <!-- COMBOBOX ITEM: texto blanco en el desplegable -->
+    <Style x:Key="ComboItemBase" TargetType="ComboBoxItem">
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Background" Value="#FF333333"/>
+        <Setter Property="Padding" Value="8,4"/>
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ComboBoxItem">
+                    <Border x:Name="bd" Background="{TemplateBinding Background}">
+                        <ContentPresenter Margin="{TemplateBinding Padding}"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsHighlighted" Value="True">
+                            <Setter TargetName="bd" Property="Background" Value="#FF3F3F3F"/>
+                        </Trigger>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter TargetName="bd" Property="Background" Value="#FF555555"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Opacity" Value="0.5"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="combo_nombre" TargetType="ComboBox">
+        <Setter Property="Background" Value="#FF333333"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Padding" Value="8,4"/>
+        <Setter Property="ItemContainerStyle" Value="{StaticResource ComboItemBase}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ComboBox">
+                    <Grid>
+                        <!-- Fondo -->
+                        <Border x:Name="bg" Background="{TemplateBinding Background}"/>
+
+                        <!-- Contenido seleccionado (no captura clics) -->
+                        <ContentPresenter x:Name="contentSite"
+                                      Margin="{TemplateBinding Padding}"
+                                      HorizontalAlignment="Left"
+                                      VerticalAlignment="Center"
+                                      RecognizesAccessKey="True"
+                                      IsHitTestVisible="False"
+                                      Content="{TemplateBinding SelectionBoxItem}"
+                                      ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                                      ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"/>
+
+                        <!-- ToggleButton a pantalla completa: CLIC EN CUALQUIER LADO ABRE -->
+                        <ToggleButton x:Name="DropDownToggle"
+              Focusable="False"
+              Background="Transparent"
+              BorderThickness="0"
+              HorizontalAlignment="Stretch"
+              VerticalAlignment="Stretch"
+              HorizontalContentAlignment="Stretch"   
+              VerticalContentAlignment="Stretch"
+              IsChecked="{Binding IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}">
+                            <Grid>
+                                <Path Data="M 0 0 L 4 4 L 8 0 Z"
+              Width="10" Height="6"
+              Stretch="Uniform"
+              Fill="{TemplateBinding Foreground}"
+              HorizontalAlignment="Right"
+              VerticalAlignment="Center"
+              Margin="0,0,12,0"/>
+                                <!-- ajusta este margen si la quieres más pegada -->
+                            </Grid>
+                        </ToggleButton>
+
+
+
+
+
+                        <!-- Líneas decorativas (no bloquean clics) -->
+                        <Border IsHitTestVisible="False"
+                            BorderBrush="#FF90CF8F" BorderThickness="0,0,0,2"
+                            VerticalAlignment="Bottom"/>
+                        <Border IsHitTestVisible="False"
+                            BorderBrush="#FF90CF8F" BorderThickness="2,0,0,0"
+                            HorizontalAlignment="Left"/>
+
+                        <!-- Popup del desplegable -->
+                        <Popup x:Name="PART_Popup"
+                           Placement="Bottom"
+                           PlacementTarget="{Binding ElementName=DropDownToggle}"
+                           IsOpen="{TemplateBinding IsDropDownOpen}"
+                           AllowsTransparency="True"
+                           Focusable="False"
+                           PopupAnimation="Slide">
+                            <Border Background="#FF333333" BorderThickness="0" SnapsToDevicePixels="True">
+                                <ScrollViewer>
+                                    <StackPanel IsItemsHost="True"/>
+                                </ScrollViewer>
+                            </Border>
+                        </Popup>
+                    </Grid>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="bg" Property="Background" Value="#FF90CF8F"/>
+                            <Setter Property="Foreground" Value="White"/>
+                        </Trigger>
+                        <Trigger Property="HasItems" Value="False">
+                            <Setter Property="MinHeight" Value="24"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="bg" Property="Opacity" Value="0.5"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
 
 </ResourceDictionary>
