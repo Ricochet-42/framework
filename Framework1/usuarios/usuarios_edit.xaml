@@ -5,10 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Framework1.usuarios"
         mc:Ignorable="d"
-        Title="usuarios_edit" Height="450" Width="800" Background="#FF272525" Closing="Window_Closing">
+        Title="usuarios_edit" Height="550" Width="800" Background="#FF272525" Closing="Window_Closing">
     <Border CornerRadius="0"
           
-        BorderThickness="10" Height="433">
+        BorderThickness="10" Height="500">
         <Border.BorderBrush>
             <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
                 <GradientStop Color="LightBlue" Offset="0.0"/>
@@ -26,7 +26,7 @@
                         </MenuItem.Icon>
                     </MenuItem>
                     <Separator/>
-                    <MenuItem Header="Eliminar" Click="agregar_click">
+                    <MenuItem Header="Eliminar" Click="Eliminar_Click">
                         <MenuItem.Icon>
                             <Image Source="/imagenes/agregar.png" Width="16" Height="16"/>
                         </MenuItem.Icon>
@@ -61,7 +61,27 @@
                HorizontalAlignment="Center" Width="210"
                />
                 </Label>
-                <Label x:Name="label_nombre"
+
+
+
+                    <Label x:Name="label_id"
+  Content="ID"
+  Foreground="LightGreen"
+  FontSize="15"
+  FontStyle="Italic"
+  FontWeight="DemiBold"
+  HorizontalAlignment="Center"/>
+                    <TextBox x:Name="txt_id"
+         Width="184"
+         Style="{StaticResource txt_nombre}"
+         Height="30"
+         PreviewTextInput="txt_id_PreviewTextInput"
+         PreviewKeyDown="txt_id_PreviewKeyDown"
+         LostFocus="txt_id_LostFocus"/>
+
+
+
+                    <Label x:Name="label_nombre"
            Content="Usuario"
            Foreground="LightGreen"
            FontSize="15"
@@ -142,7 +162,7 @@
 
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="ID"
-                                        Binding="{Binding Id}"
+                                        Binding="{Binding ID}"
                                         Width="Auto"/>
                         <DataGridTextColumn Header="Nombre"
                                         Binding="{Binding Nombre}"
