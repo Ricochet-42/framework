@@ -42,19 +42,38 @@
                 </StackPanel>
 
                 <StackPanel Margin="308,0,-430,0" Background="#FF90CF8F" Height="400" VerticalAlignment="Center">
-                    <DataGrid Name="grid_alumnos" Margin="20" Width="400" Height="250" 
-                              AutoGenerateColumns="False" IsReadOnly="True" 
-                              SelectionMode="Single" SelectionUnit="FullRow" Cursor="Hand">
+                    <DataGrid x:Name="grid_alumnos"
+          Margin="20" Width="400" Height="250"
+          AutoGenerateColumns="False" IsReadOnly="True"
+          SelectionMode="Single" SelectionUnit="FullRow" Cursor="Hand"
+          SelectionChanged="grid_alumnos_SelectionChanged">
 
+                        <!-- Seleccionar la fila con clic derecho -->
+                        <DataGrid.Resources>
+                            <Style TargetType="DataGridRow">
+                                <EventSetter Event="MouseRightButtonDown" Handler="Row_RightClick_Select"/>
+                            </Style>
+                        </DataGrid.Resources>
+
+                        <!-- Menú contextual dentro del DataGrid -->
+                        <DataGrid.ContextMenu>
+                            <ContextMenu Opened="ContextMenu_Opened" Cursor="Hand">
+                                <MenuItem x:Name="ctxEditar" Header="Editar…" Click="Editar_Click"/>
+                                <Separator/>
+                                 </ContextMenu>
+                        </DataGrid.ContextMenu>
+
+                        <!-- IMPORTANTE: columnas del DataTable en MAYÚSCULAS -->
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Expediente" Binding="{Binding Expediente}" Width="Auto"/>
-                            <DataGridTextColumn Header="Nombre" Binding="{Binding Nombre}" Width="Auto"/>
-                            <DataGridTextColumn Header="Semestre" Binding="{Binding Semestre}" Width="Auto"/>
-                            <DataGridTextColumn Header="Correo" Binding="{Binding Correo}" Width="Auto"/>
-                            <DataGridTextColumn Header="Edad" Binding="{Binding Edad}" Width="Auto"/>
-                            <DataGridTextColumn Header="Género" Binding="{Binding Genero}" Width="Auto"/>
+                            <DataGridTextColumn Header="Expediente" Binding="{Binding [EXPEDIENTE]}" Width="Auto"/>
+                            <DataGridTextColumn Header="Nombre"     Binding="{Binding [NOMBRE]}"     Width="*"/>
+                            <DataGridTextColumn Header="Semestre"   Binding="{Binding [SEMESTRE]}"   Width="Auto"/>
+                            <DataGridTextColumn Header="Correo"     Binding="{Binding [CORREO]}"     Width="*"/>
+                            <DataGridTextColumn Header="Edad"       Binding="{Binding [EDAD]}"       Width="Auto"/>
+                            <DataGridTextColumn Header="Género"     Binding="{Binding [GENERO]}"     Width="Auto"/>
                         </DataGrid.Columns>
                     </DataGrid>
+
                 </StackPanel>
             </Grid>
         </Grid>

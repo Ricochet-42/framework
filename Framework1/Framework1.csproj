@@ -77,6 +77,15 @@
     <Compile Include="usuarios\alumnos_edit.xaml.cs">
       <DependentUpon>alumnos_edit.xaml</DependentUpon>
     </Compile>
+    <Compile Include="usuarios\EditAlumnoDialog.xaml.cs">
+      <DependentUpon>EditAlumnoDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="usuarios\EditMaestroDialog.xaml.cs">
+      <DependentUpon>EditMaestroDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="usuarios\EditUsuarioDialog.xaml.cs">
+      <DependentUpon>EditUsuarioDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="usuarios\maestros_edit.xaml.cs">
       <DependentUpon>maestros_edit.xaml</DependentUpon>
     </Compile>
@@ -116,6 +125,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="usuarios\alumnos_edit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="usuarios\EditAlumnoDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="usuarios\EditMaestroDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="usuarios\EditUsuarioDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

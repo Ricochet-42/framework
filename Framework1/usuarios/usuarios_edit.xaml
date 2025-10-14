@@ -26,6 +26,12 @@
                         </MenuItem.Icon>
                     </MenuItem>
                     <Separator/>
+                    <MenuItem Header="Editar…" Click="Editar_Click">
+                        <MenuItem.Icon>
+                            <Image Source="/imagenes/agregar.png" Width="16" Height="16"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <Separator/>
                     <MenuItem Header="Eliminar" Click="Eliminar_Click">
                         <MenuItem.Icon>
                             <Image Source="/imagenes/agregar.png" Width="16" Height="16"/>

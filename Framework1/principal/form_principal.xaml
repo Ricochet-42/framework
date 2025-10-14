@@ -36,7 +36,7 @@
                 <ColumnDefinition Width="150"/>
             </Grid.ColumnDefinitions>
 
-            <RadioButton x:Name="boton_home"
+            <!--<RadioButton x:Name="boton_home"
                          Grid.Column="0"
                          Grid.Row="0" Checked="boton_home_Checked" Click="boton_home_Click">
                 <RadioButton.Background >
@@ -51,11 +51,11 @@
                     </Style>
                 </RadioButton.Style>
                 
-            </RadioButton>
+            </RadioButton>-->
 
 
 
-            <RadioButton x:Name="boton_dos"
+            <!--<RadioButton x:Name="boton_dos"
              Grid.Column="1"
              Grid.Row="0">
                 <RadioButton.Background >
@@ -70,7 +70,7 @@
                     </Style>
                 </RadioButton.Style>
 
-            </RadioButton>
+            </RadioButton>-->
 
             <Label x:Name="etiqueta_menu"
                    Content="HOME"
@@ -164,7 +164,7 @@
        ></Label>
 
 
-            <RadioButton x:Name="boton_tres"
+            <!--<RadioButton x:Name="boton_tres"
              Grid.Column="2"
              Grid.Row="0">
                 <RadioButton.Background >
@@ -201,9 +201,57 @@
                     </Style>
                 </RadioButton.Style>
 
+            </RadioButton>-->
+
+
+
+
+
+            <!-- Fila 1 -->
+            <RadioButton x:Name="boton_alumnos"
+             Grid.Column="0" Grid.Row="0"
+             Click="boton_alumnos_Click">
+                <RadioButton.Background>
+                    <ImageBrush ImageSource="/img/programador.png" Stretch="Uniform"/>
+                </RadioButton.Background>
+                <RadioButton.Style>
+                    <Style TargetType="RadioButton" BasedOn="{StaticResource boton_menu_central}"/>
+                </RadioButton.Style>
             </RadioButton>
 
+            <RadioButton x:Name="boton_maestros"
+             Grid.Column="1" Grid.Row="0"
+             Click="boton_maestros_Click">
+                <RadioButton.Background>
+                    <ImageBrush ImageSource="/img/maestro.png" Stretch="Uniform"/>
+                </RadioButton.Background>
+                <RadioButton.Style>
+                    <Style TargetType="RadioButton" BasedOn="{StaticResource boton_menu_central}"/>
+                </RadioButton.Style>
+            </RadioButton>
 
+            <RadioButton x:Name="boton_materias"
+             Grid.Column="2" Grid.Row="0"
+             Click="boton_materias_Click">
+                <RadioButton.Background>
+                    <ImageBrush ImageSource="/img/calificaciones.png" Stretch="Uniform"/>
+                </RadioButton.Background>
+                <RadioButton.Style>
+                    <Style TargetType="RadioButton" BasedOn="{StaticResource boton_menu_central}"/>
+                </RadioButton.Style>
+            </RadioButton>
+
+            <!-- Fila 2, columna 0 -->
+            <RadioButton x:Name="boton_usuarios"
+             Grid.Column="0" Grid.Row="2"
+             Click="boton_usuarios_Click">
+                <RadioButton.Background>
+                    <ImageBrush ImageSource="/img/beca-educativa.png" Stretch="Uniform"/>
+                </RadioButton.Background>
+                <RadioButton.Style>
+                    <Style TargetType="RadioButton" BasedOn="{StaticResource boton_menu_central}"/>
+                </RadioButton.Style>
+            </RadioButton>
 
             <RadioButton x:Name="boton_cinco"
              Grid.Column="1"

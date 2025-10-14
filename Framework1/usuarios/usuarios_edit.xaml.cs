@@ -55,6 +55,53 @@ namespace Framework1.usuarios
         }
 
 
+        private void Editar_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (grid_usuarios.SelectedItem == null)
+                {
+                    MessageBox.Show("Seleccione un usuario para editar.", "Aviso",
+                                    MessageBoxButton.OK, MessageBoxImage.Information);
+                    return;
+                }
+
+                // Asegúrate de que Globales.* ya estén cargados por SelectionChanged
+                var dlg = new Framework1.usuarios.EditUsuarioDialog(
+                    Globales.Sqlite_Conex,
+                    Globales.ID_Usuario,
+                    Globales.Nombre_Usuario,
+                    Globales.Clave_Usuario,
+                    Globales.Correo_Usuario,
+                    Globales.Tipo_Usuario
+                )
+                {
+                    Owner = this
+                };
+
+                bool? ok = dlg.ShowDialog();
+                if (ok == true)
+                {
+                    // Refrescar grid
+                    Mostrar_Datos_Grid();
+
+                    // Opcional: limpiar controles de edición del panel izquierdo
+                    txt_id.Clear();
+                    txt_nombre.Clear();
+                    txt_correo.Clear();
+                    txt_clave.Clear();
+                    cmb_usuarios_tipo.Text = "-- Seleccione el tipo de usuario --";
+
+                    MessageBox.Show("Usuario actualizado correctamente.", "Listo",
+                                    MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al abrir editor: " + ex.Message, "Error",
+                                MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
 
         public void Mostrar_Datos_Grid()
         {
@@ -324,3 +371,8 @@ namespace Framework1.usuarios
         //    }
     }
 }
+
+
+
+
+

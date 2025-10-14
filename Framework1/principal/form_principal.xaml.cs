@@ -35,5 +35,30 @@ namespace Framework1.principal
             usuarios_edit user = new usuarios_edit();
             user.ShowDialog();
         }
+
+        private void Abrir(Window w, RadioButton rb)
+        {
+            w.Owner = this;   // opcional
+            w.Show();         // o ShowDialog() si quieres modal
+            rb.IsChecked = false; // vuelve a estado "no seleccionado" para que se vea como botón
+        }
+
+        private void boton_alumnos_Click(object sender, RoutedEventArgs e)
+            => Abrir(new alumnos_edit(), (RadioButton)sender);
+
+        private void boton_maestros_Click(object sender, RoutedEventArgs e)
+            => Abrir(new maestros_edit(), (RadioButton)sender);
+
+        private void boton_materias_Click(object sender, RoutedEventArgs e)
+            => Abrir(new materias_edit(), (RadioButton)sender);
+
+        private void boton_usuarios_Click(object sender, RoutedEventArgs e)
+            => Abrir(new usuarios_edit(), (RadioButton)sender);
     }
+    
+    
+
 }
+
+
+

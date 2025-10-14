@@ -15,7 +15,30 @@
             </LinearGradientBrush>
         </Border.BorderBrush>
 
+        
         <Grid x:Name="grid_control">
+            <!--<Grid.ContextMenu>
+
+                <ContextMenu Cursor="Hand">
+                    
+                    <Separator/>
+                    <MenuItem Header="Editar…" Click="Editar_Click">
+                        <MenuItem.Icon>
+                            <Image Source="/imagenes/agregar.png" Width="16" Height="16"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <Separator/>
+                    <MenuItem Header="Eliminar" Click="Eliminar_Click">
+                        <MenuItem.Icon>
+                            <Image Source="/imagenes/agregar.png" Width="16" Height="16"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+
+                    <Separator/>
+                     </ContextMenu>
+
+            </Grid.ContextMenu>-->
+
             <Grid Margin="36,30,468,29" Style="{StaticResource contenedor1}" Background="#FF333333">
 
                 <StackPanel Style="{StaticResource subcontenedor1}" Margin="40,27,40,43" Background="#FF333333">
@@ -36,18 +59,46 @@
                 </StackPanel>
 
                 <StackPanel Margin="308,0,-430,0" Background="#FF90CF8F" Height="354" VerticalAlignment="Center">
-                    <DataGrid Name="grid_maestros" Margin="20" Width="358" Height="200" 
-                              AutoGenerateColumns="False" IsReadOnly="True" 
-                              SelectionMode="Single" SelectionUnit="FullRow" Cursor="Hand">
+                    <DataGrid x:Name="grid_maestros"
+          Margin="20" Width="358" Height="200"
+          AutoGenerateColumns="False" IsReadOnly="True"
+          SelectionMode="Single" SelectionUnit="FullRow" Cursor="Hand"
+          SelectionChanged="grid_maestros_SelectionChanged">
 
+                        <!-- Seleccionar la fila bajo el cursor con clic derecho -->
+                        <DataGrid.Resources>
+                            <Style TargetType="DataGridRow">
+                                <EventSetter Event="MouseRightButtonDown" Handler="Row_RightClick_Select"/>
+                            </Style>
+                        </DataGrid.Resources>
+
+                        <!-- Menú contextual dentro del DataGrid -->
+                        <DataGrid.ContextMenu>
+                            <ContextMenu Opened="ContextMenu_Opened" Cursor="Hand">
+                                <MenuItem x:Name="ctxEditar" Header="Editar…" Click="Editar_Click">
+                                    <MenuItem.Icon>
+                                        <Image  Width="16" Height="16"/>
+                                    </MenuItem.Icon>
+                                </MenuItem>
+                                <Separator/>
+                                <MenuItem x:Name="ctxEliminar" Header="Eliminar" Click="Eliminar_Click">
+                                    <MenuItem.Icon>
+                                        <Image  Width="16" Height="16"/>
+                                    </MenuItem.Icon>
+                                </MenuItem>
+                            </ContextMenu>
+                        </DataGrid.ContextMenu>
+
+                        <!-- IMPORTANTE: DataTable usa columnas en MAYÚSCULAS -->
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="Auto"/>
-                            <DataGridTextColumn Header="Nombre" Binding="{Binding Nombre}" Width="Auto"/>
-                            <DataGridTextColumn Header="Correo" Binding="{Binding Correo}" Width="Auto"/>
-                            <DataGridTextColumn Header="Facultad" Binding="{Binding Facultad}" Width="Auto"/>
-                            <DataGridTextColumn Header="Tipo" Binding="{Binding Tipo}" Width="Auto"/>
+                            <DataGridTextColumn Header="ID"       Binding="{Binding [ID]}"       Width="Auto"/>
+                            <DataGridTextColumn Header="Nombre"   Binding="{Binding [NOMBRE]}"   Width="*"/>
+                            <DataGridTextColumn Header="Correo"   Binding="{Binding [CORREO]}"   Width="*"/>
+                            <DataGridTextColumn Header="Facultad" Binding="{Binding [FACULTAD]}" Width="*"/>
+                            <DataGridTextColumn Header="Tipo"     Binding="{Binding [TIPO]}"     Width="Auto"/>
                         </DataGrid.Columns>
                     </DataGrid>
+
                 </StackPanel>
             </Grid>
         </Grid>
