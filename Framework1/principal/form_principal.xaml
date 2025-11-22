@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Framework1.principal"
         mc:Ignorable="d"
-        Title="form_principal" Height="450" Width="800" Background="#FF272525">
+        Title="form_principal" Height="525" Width="800" Background="#FF272525">
     <Border CornerRadius="0"
        
      BorderThickness="10" Height="433">

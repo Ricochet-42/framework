@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Framework1.usuarios"
         mc:Ignorable="d"
-        Title="alumnos_edit" Height="500" Width="850" Background="#FF272525" Closing="Window_Closing">
+        Title="alumnos_edit" Height="806" Width="1174" Background="#FF272525" Closing="Window_Closing">
 
-    <Border CornerRadius="0" BorderThickness="10" Height="480">
+    <Border CornerRadius="0" BorderThickness="10" Margin="0,10,0,23">
         <Border.BorderBrush>
             <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
                 <GradientStop Color="LightBlue" Offset="0.0"/>
@@ -15,67 +15,219 @@
             </LinearGradientBrush>
         </Border.BorderBrush>
 
-        <Grid x:Name="grid_control">
-            <Grid Margin="36,30,468,29" Style="{StaticResource contenedor1}" Background="#FF333333">
+        <!-- ========================================================
+               GRID PRINCIPAL CON HEADER + CONTENIDO
+        ======================================================== -->
+        <Grid>
 
-                <StackPanel Style="{StaticResource subcontenedor1}" Margin="40,27,40,43" Background="#FF333333">
-                    <Label Content="Ingreso Alumnos" Foreground="LightGreen" FontSize="20"
-                           FontStyle="Italic" FontWeight="DemiBold" HorizontalAlignment="Center"/>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="70"/>
+                <!-- HEADER -->
+                <RowDefinition Height="*"/>
+                <!-- CONTENIDO -->
+            </Grid.RowDefinitions>
 
-                    <Label Content="Expediente" Foreground="LightGreen"/>
-                    <TextBox x:Name="txt_expediente" Width="184" Style="{StaticResource txt_nombre}" Height="25"/>
 
-                    <Label Content="Nombre" Foreground="LightGreen"/>
-                    <TextBox x:Name="txt_nombre" Width="184" Style="{StaticResource txt_nombre}" Height="25"/>
 
-                    <Label Content="Semestre" Foreground="LightGreen"/>
-                    <TextBox x:Name="txt_semestre" Width="184" Style="{StaticResource txt_nombre}" Height="25"/>
 
-                    <Label Content="Correo" Foreground="LightGreen"/>
-                    <TextBox x:Name="txt_correo" Width="185" Style="{StaticResource txt_nombre}" Height="25"/>
+            <!-- ========================================================
+                                   HEADER
+            ========================================================= -->
+            <Border Grid.Row="0" Background="#FF90CF8F" Padding="10">
+                <DockPanel>
 
-                    <Label Content="Edad" Foreground="LightGreen"/>
-                    <TextBox x:Name="txt_edad" Width="185" Style="{StaticResource txt_nombre}" Height="25"/>
+                    <!-- Título -->
+                    <TextBlock Text="Edicion de Alumnos"
+                               FontSize="28"
+                               FontWeight="Bold"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Left"
+                               Margin="20,0"/>
 
-                    <Label Content="Género" Foreground="LightGreen"/>
-                    <TextBox x:Name="txt_genero" Width="185" Style="{StaticResource txt_nombre}" Height="25"/>
-                </StackPanel>
 
-                <StackPanel Margin="308,0,-430,0" Background="#FF90CF8F" Height="400" VerticalAlignment="Center">
-                    <DataGrid x:Name="grid_alumnos"
-          Margin="20" Width="400" Height="250"
-          AutoGenerateColumns="False" IsReadOnly="True"
-          SelectionMode="Single" SelectionUnit="FullRow" Cursor="Hand"
-          SelectionChanged="grid_alumnos_SelectionChanged">
+                    <!-- ComboBox de navegación -->
 
-                        <!-- Seleccionar la fila con clic derecho -->
-                        <DataGrid.Resources>
-                            <Style TargetType="DataGridRow">
-                                <EventSetter Event="MouseRightButtonDown" Handler="Row_RightClick_Select"/>
-                            </Style>
-                        </DataGrid.Resources>
 
-                        <!-- Menú contextual dentro del DataGrid -->
-                        <DataGrid.ContextMenu>
-                            <ContextMenu Opened="ContextMenu_Opened" Cursor="Hand">
-                                <MenuItem x:Name="ctxEditar" Header="Editar…" Click="Editar_Click"/>
-                                <Separator/>
-                                 </ContextMenu>
-                        </DataGrid.ContextMenu>
+                    <Button Content="Regresar"
+        Width="141" Height="40" HorizontalAlignment="Right"
+        Click="Boton_Regresar_Click" Background="#FF333333" Foreground="LightGreen"/>
 
-                        <!-- IMPORTANTE: columnas del DataTable en MAYÚSCULAS -->
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="Expediente" Binding="{Binding [EXPEDIENTE]}" Width="Auto"/>
-                            <DataGridTextColumn Header="Nombre"     Binding="{Binding [NOMBRE]}"     Width="*"/>
-                            <DataGridTextColumn Header="Semestre"   Binding="{Binding [SEMESTRE]}"   Width="Auto"/>
-                            <DataGridTextColumn Header="Correo"     Binding="{Binding [CORREO]}"     Width="*"/>
-                            <DataGridTextColumn Header="Edad"       Binding="{Binding [EDAD]}"       Width="Auto"/>
-                            <DataGridTextColumn Header="Género"     Binding="{Binding [GENERO]}"     Width="Auto"/>
-                        </DataGrid.Columns>
-                    </DataGrid>
+                </DockPanel>
+            </Border>
 
-                </StackPanel>
+            <!-- ========================================================
+                                 CONTENIDO ORIGINAL
+            ========================================================= -->
+            <Grid x:Name="grid_control" Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="32*"/>
+                    <ColumnDefinition Width="87*"/>
+                    <ColumnDefinition Width="251*"/>
+                    <ColumnDefinition Width="227*"/>
+                    <ColumnDefinition Width="557*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid Margin="20,20,20,20" Grid.ColumnSpan="5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="350"/>
+                        <ColumnDefinition Width="14*"/>
+                        <ColumnDefinition Width="101*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- FORMULARIO IZQUIERDO -->
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="-10,10,10,0" Height="622" VerticalAlignment="Top">
+                        <StackPanel Style="{StaticResource subcontenedor1}" 
+                                    Margin="40,20,20,20"
+                                    Background="#FF333333">
+
+                            <StackPanel.ContextMenu>
+                                <ContextMenu>
+                                    <MenuItem Header="Agregar…" Click="Agregar_Click"/>
+                                </ContextMenu>
+                            </StackPanel.ContextMenu>
+
+                            <Label Content="Ingreso Alumnos" Foreground="LightGreen" FontSize="20"
+                                   FontStyle="Italic" FontWeight="DemiBold" HorizontalAlignment="Center" Height="56"/>
+
+                            <Label Content="Expediente" Foreground="LightGreen"/>
+                            <TextBox x:Name="txt_expediente" Width="220" Style="{StaticResource txt_nombre}" Height="35"/>
+
+                            <Label Content="Nombre" Foreground="LightGreen"/>
+                            <TextBox x:Name="txt_nombre" Width="220" Style="{StaticResource txt_nombre}" Height="35"/>
+
+                            <Label Content="Semestre" Foreground="LightGreen"/>
+                            <ComboBox x:Name="cb_semestre" Width="220"  Style="{StaticResource combo_nombre}" Height="35" Background="#FF333333" >
+                                
+                            </ComboBox>
+
+                            <Label Content="Correo" Foreground="LightGreen"/>
+                            <TextBox x:Name="txt_correo" Width="220" Style="{StaticResource txt_nombre}" Height="35"/>
+
+                            <Label Content="Edad" Foreground="LightGreen"/>
+                            <TextBox x:Name="txt_edad" Width="220" Style="{StaticResource txt_nombre}" Height="35"/>
+
+                            <Label Content="Género" Foreground="LightGreen"/>
+                            <ComboBox x:Name="cb_genero" Width="220" Style="{StaticResource combo_nombre}" Height="35" Background="#FF333333" >
+                                <ComboBoxItem Content="Masculino"/>
+                                <ComboBoxItem Content="Femenino"/>
+                                <ComboBoxItem Content="Otro"/>
+                            </ComboBox>
+
+                            <Label Content="Teléfono" Foreground="LightGreen"/>
+                            <TextBox x:Name="txt_telefono" Width="220" Style="{StaticResource txt_nombre}" Height="35"/>
+
+                            <Label Content="Número de Contacto" Foreground="LightGreen"/>
+                            <TextBox x:Name="txt_numcontacto" Width="220" Style="{StaticResource txt_nombre}" Height="35"/>
+
+                            <Label Content="Dirección" Foreground="LightGreen"/>
+                            <TextBox x:Name="txt_direccion" Width="220" Style="{StaticResource txt_nombre}" Height="35"/>
+
+                            <Label Content="Alergias" Foreground="LightGreen"/>
+                            <TextBox x:Name="txt_alergias" Width="220" Style="{StaticResource txt_nombre}" Height="35"/>
+
+                            <Label Content="Lugar de Nacimiento" Foreground="LightGreen"/>
+                            <TextBox x:Name="txt_lugarnac" Width="220" Style="{StaticResource txt_nombre}" Height="35"/>
+
+                            <Label Content="Nombre del Padre" Foreground="LightGreen"/>
+                            <TextBox x:Name="txt_nombrepadre" Width="220" Style="{StaticResource txt_nombre}" Height="35"/>
+
+                            <Label Content="Nombre de la Madre" Foreground="LightGreen"/>
+                            <TextBox x:Name="txt_nombremadre" Width="220" Style="{StaticResource txt_nombre}" Height="35"/>
+
+                            <Label Content="Total Inasistencias" Foreground="LightGreen"/>
+                            <TextBox x:Name="txt_totalina" Width="220" Style="{StaticResource txt_nombre}" Height="35"/>
+
+                        </StackPanel>
+                    </ScrollViewer>
+
+                    <!-- GRID DERECHO (TABLA) -->
+                    <StackPanel Grid.Column="1" Background="#FF90CF8F" Margin="47,35,42,6" Grid.ColumnSpan="2">
+
+                        <DataGrid x:Name="grid_alumnos"
+                                  Margin="20" Width="593" Height="532"
+                                  AutoGenerateColumns="False" IsReadOnly="True"
+                                  SelectionMode="Single" SelectionUnit="FullRow" Cursor="Hand"
+                                  SelectionChanged="grid_alumnos_SelectionChanged">
+
+                            <DataGrid.Resources>
+                                <Style TargetType="DataGridRow">
+                                    <EventSetter Event="MouseRightButtonDown" Handler="Row_RightClick_Select"/>
+                                </Style>
+                            </DataGrid.Resources>
+
+                            <DataGrid.ContextMenu>
+                                <ContextMenu Opened="ContextMenu_Opened" Cursor="Hand">
+                                    <MenuItem x:Name="ctxEditar" Header="Editar…" Click="Editar_Click">
+                                        <MenuItem.Icon>
+                                            <Image Source="/Imagenes/comentario.png"/>
+                                        </MenuItem.Icon>
+                                    </MenuItem>
+
+                                    <MenuItem x:Name="ctxEliminar" Header="Eliminar…" Click="Eliminar_Click">
+                                        <MenuItem.Icon>
+                                            <Image Source="/Imagenes/gorro.png"/>
+                                        </MenuItem.Icon>
+                                    </MenuItem>
+
+                                    <Separator/>
+
+                                    <MenuItem Header="Agregar" Click="Agregar_Click">
+                                        <MenuItem.Icon>
+                                            <Image Source="/Imagenes/users.png"/>
+                                        </MenuItem.Icon>
+                                    </MenuItem>
+
+                                    <MenuItem Header="Actualizar" Click="Actualizar_Click">
+                                        <MenuItem.Icon>
+                                            <Image Source="/Imagenes/comentario.png"/>
+                                        </MenuItem.Icon>
+                                    </MenuItem>
+
+                                    <MenuItem Header="Reiniciar" Click="Reiniciar_Click">
+                                        <MenuItem.Icon>
+                                            <Image Source="/Imagenes/logo.png"/>
+                                        </MenuItem.Icon>
+                                    </MenuItem>
+
+                                    <Separator/>
+
+                                    <MenuItem Header="Crear Ficha" Click="CrearFicha_Click">
+                                        <MenuItem.Icon>
+                                            <Image Source="/Imagenes/crear.png"/>
+                                        </MenuItem.Icon>
+                                    </MenuItem>
+
+                                    <MenuItem Header="Crear Lista" Click="CrearLista_Click">
+                                        <MenuItem.Icon>
+                                            <Image Source="/Imagenes/lista.png"/>
+                                        </MenuItem.Icon>
+                                    </MenuItem>
+                                </ContextMenu>
+                            </DataGrid.ContextMenu>
+
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Expediente" Binding="{Binding [EXPEDIENTE]}" Width="Auto"/>
+                                <DataGridTextColumn Header="Nombre"     Binding="{Binding [NOMBRE]}"     Width="200"/>
+                                <DataGridTextColumn Header="Semestre"   Binding="{Binding [SEMESTRE]}"   Width="Auto"/>
+                                <DataGridTextColumn Header="Correo"     Binding="{Binding [CORREO]}"     Width="200"/>
+                                <DataGridTextColumn Header="Edad"       Binding="{Binding [EDAD]}"       Width="Auto"/>
+                                <DataGridTextColumn Header="Género"     Binding="{Binding [GENERO]}"     Width="Auto"/>
+                                <DataGridTextColumn Header="Teléfono"   Binding="{Binding [TELEFONO]}"   Width="120"/>
+                                <DataGridTextColumn Header="Contacto"   Binding="{Binding [NUMEROCONTACTO]}" Width="120"/>
+                                <DataGridTextColumn Header="Dirección"  Binding="{Binding [DIRECCION]}" Width="200"/>
+                                <DataGridTextColumn Header="Alergias"   Binding="{Binding [ALERGIAS]}" Width="150"/>
+                                <DataGridTextColumn Header="Nacimiento" Binding="{Binding [LUGARNACIMIENTO]}" Width="150"/>
+                                <DataGridTextColumn Header="Padre"      Binding="{Binding [NOMBREPADRE]}" Width="150"/>
+                                <DataGridTextColumn Header="Madre"      Binding="{Binding [NOMBREMADRE]}" Width="150"/>
+                                <DataGridTextColumn Header="Total INA"  Binding="{Binding [TOTALINA]}" Width="Auto"/>
+                            </DataGrid.Columns>
+
+                        </DataGrid>
+                    </StackPanel>
+
+                </Grid>
             </Grid>
+
         </Grid>
     </Border>
 </Window>
